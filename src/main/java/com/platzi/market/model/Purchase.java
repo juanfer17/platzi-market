@@ -19,7 +19,7 @@ public class Purchase {
     private Integer purchaseId;
 
     @Column(name = "id_cliente")
-    private String clientId;
+    private Integer clientId;
 
     @Column(name = "fecha")
     private LocalDateTime date;

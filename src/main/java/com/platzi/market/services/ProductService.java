@@ -15,10 +15,11 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public List<Product> getAll(){
-        return (List<Product>) productRepository.findAll();
+        List<Product> products = (List<Product>) productRepository.findAll();
+        return products;
     }
 
-    public List<Product> getByCategorieId(int categorieId){
+    public Optional<List<Product>> getByCategorieId(int categorieId){
         return productRepository.findByCategorieIdOrderByNameAsc(categorieId);
     }
 
@@ -34,8 +35,11 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public void delete(int productId){
-        productRepository.deleteById(productId);
+    public boolean delete(int productId){
+        return getProduct(productId)
+                .map(product -> {
+                    productRepository.deleteById(productId);
+                    return true;
+                }).orElse(false);
     }
-
 }
