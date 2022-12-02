@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.platzi.market.model.Product;
 import com.platzi.market.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,11 +21,13 @@ public class ProductController {
         return productService.getAll();
     }
 
-    public Optional<Product> getProduct(int productId){
+    @GetMapping("/{id}")
+    public Optional<Product> getProduct(@PathVariable("id") int productId){
         return productService.getProduct(productId);
     }
 
-    public List<Product> getByCategorieId(int categorieId){
+    @GetMapping("/category/{categorieId}")
+    public List<Product> getByCategorieId(@PathVariable("categorieId")int categorieId){
         return productService.getByCategorieId(categorieId);
     }
 
@@ -35,11 +35,13 @@ public class ProductController {
         return productService.getByLow(stockAmount, status);
     }
 
-    public Product save(Product product){
+    @PostMapping("/save")
+    public Product save(@RequestBody Product product){
         return productService.save(product);
     }
 
-    public void delete(int productId) {
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable("id") int productId) {
         productService.delete(productId);
     }
 }
