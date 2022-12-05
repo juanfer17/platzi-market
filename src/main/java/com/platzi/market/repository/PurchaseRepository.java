@@ -11,5 +11,6 @@ import java.util.Optional;
 @Repository
 public interface PurchaseRepository extends CrudRepository <Purchase, Integer> {
 
+    Optional<List<Purchase>> findByClientId(String clientId);
 
 }

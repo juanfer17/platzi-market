@@ -13,13 +13,13 @@ public class Client {
 
     @Id
     @Column(name = "id")
-    private Integer id;
+    private String id;
     @Column(name = "nombre")
     private String name;
     @Column(name = "apellidos")
     private String lastName;
     @Column(name = "celular")
-    private String cellNumber;
+    private Long cellNumber;
     @Column(name = "direccion")
     private String address;
     @Column(name = "correo_electronico")
